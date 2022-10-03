@@ -2,4 +2,5 @@ Simple text file.
 
 Colors
 1. red
-2.orange
+2. orange
+3. green
