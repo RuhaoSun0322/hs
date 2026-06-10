@@ -3,60 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O2 — AI Chat · BOM Analysis Scenarios</title>
+  <title>O2 — BOM Active Agent · UX Reference</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0f1219;
-      --bg-secondary: #161b26;
-      --bg-card: #1c2233;
-      --bg-card-hover: #232b3e;
-      --bg-input: #1c2233;
-      --border: #2a3348;
-      --border-light: #343f57;
-      --text-primary: #e8ecf4;
-      --text-secondary: #8b95a8;
-      --text-muted: #5e6a7e;
-      --accent: #4f8cff;
-      --accent-hover: #6ba0ff;
-      --accent-subtle: rgba(79, 140, 255, 0.08);
-      --accent-border: rgba(79, 140, 255, 0.25);
-      --warning: #f5a623;
-      --warning-subtle: rgba(245, 166, 35, 0.08);
-      --warning-border: rgba(245, 166, 35, 0.2);
-      --orange: #f97316;
-      --orange-subtle: rgba(249, 115, 22, 0.08);
-      --orange-border: rgba(249, 115, 22, 0.2);
-      --success: #34d399;
-      --success-subtle: rgba(52, 211, 153, 0.08);
-      --error: #f87171;
-      --error-subtle: rgba(248, 113, 113, 0.08);
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
-      --radius-xl: 18px;
-      --shadow: 0 2px 12px rgba(0,0,0,0.25);
+      --bg: #f7f5f0;
+      --bg-white: #ffffff;
+      --bg-hover: #f2f0eb;
+      --border: #e8e5df;
+      --border-light: #f0ede8;
+      --text: #1a1a1a;
+      --text-secondary: #5c5c5c;
+      --text-muted: #8c8c8c;
+      --green: #2d5016;
+      --green-light: #e8f0e0;
+      --green-badge: #3d7a1c;
+      --orange: #c2600a;
+      --orange-light: #fef3e8;
+      --orange-border: #f5c87a;
+      --red: #b91c1c;
+      --red-light: #fef2f2;
+      --blue: #1d4ed8;
+      --blue-light: #eff6ff;
+      --amber: #92400e;
+      --amber-light: #fffbeb;
+      --amber-border: #fbbf24;
+      --purple: #6b21a8;
+      --purple-light: #faf5ff;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --radius-pill: 20px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background: var(--bg);
+      color: var(--text);
       height: 100vh;
       overflow: hidden;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    /* Top Scenario Tabs */
-    .scenario-tabs {
+    /* Top Nav */
+    .top-nav {
+      height: 48px;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 2px;
-      padding: 10px 16px;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      gap: 6px;
       position: fixed;
       top: 0;
       left: 0;
@@ -64,102 +66,158 @@
       z-index: 100;
     }
 
-    .scenario-tab {
-      padding: 8px 16px;
-      border-radius: var(--radius-md);
+    .nav-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .nav-item {
+      padding: 6px 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .nav-item:hover { background: var(--bg-hover); color: var(--text); }
+    .nav-item.active { font-weight: 600; color: var(--text); }
+
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Scenario Selector */
+    .scenario-bar {
+      height: 44px;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 4px;
+      position: fixed;
+      top: 48px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      overflow-x: auto;
+    }
+
+    .scenario-bar::-webkit-scrollbar { height: 0; }
+
+    .scenario-btn {
+      padding: 6px 12px;
       font-size: 12px;
       font-weight: 500;
       color: var(--text-muted);
       background: transparent;
       border: 1px solid transparent;
+      border-radius: var(--radius-pill);
       cursor: pointer;
-      transition: all 0.15s;
       white-space: nowrap;
+      transition: all 0.15s;
     }
 
-    .scenario-tab:hover {
-      color: var(--text-secondary);
-      background: var(--bg-card);
-    }
+    .scenario-btn:hover { background: var(--bg-hover); color: var(--text-secondary); }
+    .scenario-btn.active { background: var(--green-light); color: var(--green); border-color: var(--green); font-weight: 600; }
 
-    .scenario-tab.active {
-      color: var(--text-primary);
-      background: var(--bg-card);
-      border-color: var(--border);
-    }
-
-    .scenario-tab .tab-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--border);
-      font-size: 10px;
-      font-weight: 600;
-      margin-right: 6px;
-    }
-
-    .scenario-tab.active .tab-num {
-      background: var(--accent);
-      color: white;
-    }
-
-    /* Layout */
-    .app-layout {
+    /* Main Layout */
+    .main-layout {
       display: grid;
-      grid-template-columns: 1fr 440px;
-      height: 100vh;
-      padding-top: 49px;
+      grid-template-columns: 1fr 480px;
+      height: calc(100vh - 92px);
+      margin-top: 92px;
     }
 
-    /* Left Panel - BOM Analysis */
+    /* BOM Panel */
     .bom-panel {
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      background: var(--bg-white);
     }
 
-    .bom-header {
-      padding: 16px 24px;
+    .bom-toolbar {
+      padding: 14px 20px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .bom-header h2 {
-      font-size: 15px;
+    .bom-toolbar-title {
+      font-size: 14px;
       font-weight: 600;
     }
 
-    .bom-status {
-      display: inline-flex;
+    .bom-toolbar-file {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .bom-toolbar-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .bom-summary {
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      background: var(--success-subtle);
-      border: 1px solid rgba(52, 211, 153, 0.2);
-      border-radius: 20px;
+      gap: 16px;
+      font-size: 12px;
+      background: var(--bg);
+    }
+
+    .bom-summary-cost {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .bom-summary-stat { color: var(--text-secondary); }
+
+    .rank-pills {
+      display: flex;
+      gap: 4px;
+      margin-left: 8px;
+    }
+
+    .rank-pill {
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
       font-size: 11px;
       font-weight: 500;
-      color: var(--success);
+      border: 1px solid var(--border);
+      background: var(--bg-white);
+      color: var(--text-secondary);
+      cursor: pointer;
     }
 
-    .bom-status::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--success);
-    }
+    .rank-pill.active { background: var(--text); color: white; border-color: var(--text); }
 
-    .bom-content {
+    .bom-table-wrap {
       flex: 1;
       overflow-y: auto;
-      padding: 0;
     }
 
     .bom-table {
@@ -171,497 +229,563 @@
     .bom-table th {
       text-align: left;
       padding: 10px 14px;
-      color: var(--text-muted);
-      font-weight: 500;
       font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       border-bottom: 1px solid var(--border);
+      background: var(--bg-white);
       position: sticky;
       top: 0;
-      background: var(--bg-primary);
       z-index: 2;
     }
 
     .bom-table td {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      color: var(--text-secondary);
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
     }
 
-    .bom-table tr.unmatched td { color: var(--warning); background: var(--warning-subtle); }
-    .bom-table tr.suffix td { color: var(--orange); background: var(--orange-subtle); }
-    .bom-table tr.matched td { color: var(--text-secondary); }
+    .bom-table tr:hover td { background: var(--bg-hover); }
+    .bom-table tr.highlight td { background: var(--orange-light); }
+    .bom-table tr.highlight-blue td { background: var(--blue-light); }
 
-    .match-badge {
+    .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
       font-weight: 500;
     }
 
-    .match-badge.success { background: var(--success-subtle); color: var(--success); border: 1px solid rgba(52,211,153,0.2); }
-    .match-badge.warning { background: var(--warning-subtle); color: var(--warning); border: 1px solid var(--warning-border); }
-    .match-badge.orange { background: var(--orange-subtle); color: var(--orange); border: 1px solid var(--orange-border); }
+    .status-badge.matched { background: var(--green-light); color: var(--green-badge); }
+    .status-badge.unmatched { background: var(--orange-light); color: var(--orange); }
+    .status-badge.no-price { background: var(--amber-light); color: var(--amber); }
+    .status-badge.suffix { background: #fff7ed; color: #c2410c; }
 
-    /* Right Panel - AI Chat */
+    .status-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .matched-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .matched-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+
+    .matched-sub { font-size: 11px; color: var(--text-muted); }
+    .mpn-cell { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; font-weight: 500; }
+
+    /* AI Chat Panel */
     .chat-panel {
       display: flex;
       flex-direction: column;
-      background: var(--bg-secondary);
-      height: calc(100vh - 49px);
+      background: var(--bg-white);
+      height: 100%;
     }
 
     .chat-header {
-      padding: 14px 20px;
+      padding: 12px 20px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 12px;
     }
 
-    .chat-header-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .ai-avatar {
+    .chat-avatar {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #4f8cff, #7c5cff);
+      background: var(--green);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .ai-avatar svg { width: 16px; height: 16px; fill: white; }
-
+    .chat-header-info { flex: 1; }
     .chat-header-title { font-size: 14px; font-weight: 600; }
-    .chat-header-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .chat-header-path { font-size: 11px; color: var(--text-muted); font-family: monospace; }
 
-    .icon-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-sm);
+    .chat-header-tabs {
+      display: flex;
+      gap: 2px;
+      margin-left: auto;
+    }
+
+    .chat-tab {
+      padding: 5px 12px;
+      font-size: 12px;
+      border-radius: 6px;
       border: 1px solid var(--border);
+      background: var(--bg-white);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .chat-tab.active { background: var(--bg); font-weight: 600; color: var(--text); }
+
+    .chat-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: none;
       background: transparent;
       color: var(--text-muted);
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s;
+      font-size: 16px;
     }
 
-    .icon-btn:hover { background: var(--bg-card); color: var(--text-primary); }
+    .chat-close:hover { background: var(--bg-hover); }
 
     /* Chat Messages */
     .chat-messages {
       flex: 1;
       overflow-y: auto;
-      padding: 20px;
+      padding: 24px 20px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    .message {
+    /* Agent Message */
+    .agent-msg {
       display: flex;
-      gap: 10px;
-      max-width: 100%;
-      animation: fadeInUp 0.3s ease;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .agent-msg-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
     }
 
-    .message-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
+    .agent-msg-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
     }
 
-    .message-avatar.ai { background: linear-gradient(135deg, #4f8cff, #7c5cff); }
-    .message-avatar.ai svg { width: 14px; height: 14px; fill: white; }
+    .agent-msg-text strong { color: var(--text); font-weight: 600; }
 
-    .message-body { flex: 1; min-width: 0; }
-
-    .message-sender {
-      font-size: 11px;
+    .agent-msg-highlight {
       font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
+      color: var(--text);
     }
 
-    .message-content { font-size: 13px; line-height: 1.6; color: var(--text-primary); }
-
-    /* Agent Card */
-    .agent-card {
-      background: var(--bg-card);
+    /* Issue Card */
+    .issue-card {
+      background: var(--bg-white);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      margin-top: 4px;
+      box-shadow: var(--shadow-sm);
     }
 
-    .agent-card-header {
+    .issue-card-header {
       padding: 14px 16px;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-light);
+      background: var(--bg);
     }
 
-    .agent-card-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-sm);
+    .issue-card-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      font-size: 14px;
     }
 
-    .agent-card-icon.warning-icon {
-      background: var(--warning-subtle);
-      border: 1px solid var(--warning-border);
-    }
+    .issue-card-icon.orange { background: var(--orange-light); color: var(--orange); }
+    .issue-card-icon.amber { background: var(--amber-light); color: var(--amber); }
+    .issue-card-icon.blue { background: var(--blue-light); color: var(--blue); }
+    .issue-card-icon.red { background: var(--red-light); color: var(--red); }
+    .issue-card-icon.green { background: var(--green-light); color: var(--green); }
+    .issue-card-icon.purple { background: var(--purple-light); color: var(--purple); }
 
-    .agent-card-icon.orange-icon {
-      background: var(--orange-subtle);
-      border: 1px solid var(--orange-border);
-    }
+    .issue-card-title { font-size: 13px; font-weight: 600; flex: 1; }
 
-    .agent-card-icon svg { width: 16px; height: 16px; fill: none; }
-
-    .agent-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-
-    .agent-card-count {
-      margin-left: auto;
-      padding: 3px 9px;
-      border-radius: 10px;
+    .issue-card-count {
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
       font-size: 11px;
       font-weight: 600;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
     }
 
-    .agent-card-count.warning-count {
-      background: var(--warning-subtle);
-      border: 1px solid var(--warning-border);
-      color: var(--warning);
-    }
+    .issue-card-body { padding: 16px; }
 
-    .agent-card-count.orange-count {
-      background: var(--orange-subtle);
-      border: 1px solid var(--orange-border);
-      color: var(--orange);
-    }
-
-    .agent-card-body { padding: 16px; }
-
-    .agent-card-text {
+    .issue-card-text {
       font-size: 13px;
       line-height: 1.6;
       color: var(--text-secondary);
       margin-bottom: 14px;
     }
 
-    /* MPN List */
-    .mpn-list {
-      background: var(--bg-primary);
+    .issue-card-text strong { color: var(--text); }
+
+    /* MPN List inside card */
+    .mpn-list-card {
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
+      border-radius: var(--radius);
+      overflow: hidden;
       margin-bottom: 14px;
     }
 
-    .mpn-list-header {
+    .mpn-list-card-header {
+      padding: 8px 12px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-light);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
     }
 
-    .mpn-list-title {
+    .mpn-list-card-title {
       font-size: 11px;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.3px;
     }
 
-    .mpn-list-expand {
+    .mpn-list-card-link {
       font-size: 11px;
-      color: var(--accent);
+      color: var(--blue);
       cursor: pointer;
-      border: none;
-      background: none;
       font-weight: 500;
+      background: none;
+      border: none;
     }
 
-    .mpn-list-expand:hover { color: var(--accent-hover); }
-
-    .mpn-items { display: flex; flex-direction: column; gap: 6px; }
-
-    .mpn-item {
+    .mpn-row {
+      padding: 8px 12px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 8px 10px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      transition: all 0.15s;
-    }
-
-    .mpn-item:hover { border-color: var(--border-light); background: var(--bg-card); }
-
-    .mpn-item-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-
-    .mpn-item-code {
+      gap: 10px;
+      border-bottom: 1px solid var(--border-light);
       font-size: 12px;
-      font-weight: 500;
-      color: var(--text-primary);
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     }
 
-    .mpn-item-reason {
-      font-size: 10px;
-      color: var(--text-muted);
-      padding: 2px 6px;
-      background: var(--bg-primary);
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
+    .mpn-row:last-child { border-bottom: none; }
+    .mpn-row:hover { background: var(--bg-hover); }
 
-    .mpn-item-checkbox {
+    .mpn-row-check {
       width: 16px;
       height: 16px;
       border-radius: 4px;
-      border: 1.5px solid var(--border-light);
-      background: transparent;
-      cursor: pointer;
+      border: 1.5px solid var(--border);
       appearance: none;
       -webkit-appearance: none;
-      transition: all 0.15s;
+      cursor: pointer;
       flex-shrink: 0;
-    }
-
-    .mpn-item-checkbox:checked {
-      background: var(--accent);
-      border-color: var(--accent);
       position: relative;
     }
 
-    .mpn-item-checkbox:checked::after {
+    .mpn-row-check:checked { background: var(--green); border-color: var(--green); }
+    .mpn-row-check:checked::after {
       content: '✓';
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       color: white;
       font-size: 10px;
       font-weight: 700;
     }
 
-    /* Suffix comparison block */
-    .suffix-comparison {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      margin-bottom: 14px;
-    }
-
-    .suffix-comparison-header {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      margin-bottom: 12px;
-    }
-
-    .suffix-row {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .suffix-item {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 10px 12px;
-    }
-
-    .suffix-item-label {
-      font-size: 10px;
+    .mpn-row-code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      margin-bottom: 6px;
+      color: var(--text);
     }
 
-    .suffix-item-label.original { color: var(--text-muted); }
-    .suffix-item-label.base { color: var(--accent); }
-
-    .suffix-item-mpn {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 13px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-
-    .mpn-base { color: var(--text-primary); }
-    .mpn-suffix { color: var(--orange); text-decoration: line-through; opacity: 0.7; }
-    .mpn-suffix-tag {
-      margin-left: 8px;
+    .mpn-row-tag {
       font-size: 10px;
       padding: 2px 6px;
       border-radius: 4px;
-      background: var(--orange-subtle);
-      border: 1px solid var(--orange-border);
-      color: var(--orange);
-      font-family: 'Inter', sans-serif;
-      text-decoration: none;
-      font-weight: 500;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
     }
 
-    .suffix-arrow {
+    .mpn-row-tag.orange { background: var(--orange-light); border-color: var(--orange-border); color: var(--orange); }
+
+    /* Diff rows for suffix */
+    .diff-row-card {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .diff-row-card:last-child { border-bottom: none; }
+
+    .diff-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4px 0;
-    }
-
-    .suffix-arrow svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--text-muted);
-    }
-
-    .suffix-item-mpn.resolved { color: var(--accent); }
-
-    /* Reason tags */
-    .reason-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-
-    .reason-tag {
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 11px;
-      color: var(--text-secondary);
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-    }
-
-    /* Prompt question */
-    .prompt-question {
-      padding: 14px 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .prompt-question.warning-prompt { background: var(--warning-subtle); }
-    .prompt-question.warning-prompt p { color: var(--warning); }
-    .prompt-question.orange-prompt { background: var(--orange-subtle); }
-    .prompt-question.orange-prompt p { color: var(--orange); }
-    .prompt-question.accent-prompt { background: var(--accent-subtle); }
-    .prompt-question.accent-prompt p { color: var(--accent); }
-
-    .prompt-question p { font-size: 13px; font-weight: 500; }
-
-    /* Action buttons */
-    .agent-card-actions { padding: 0 16px 16px; }
-
-    .actions-label {
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 10px;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
+      flex-shrink: 0;
+      margin-top: 2px;
     }
 
-    .action-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .diff-content { flex: 1; }
 
-    .action-btn {
-      padding: 8px 14px;
-      border-radius: var(--radius-md);
+    .diff-original-line {
+      font-family: 'SF Mono', 'Fira Code', monospace;
       font-size: 12px;
+      color: var(--text);
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .diff-strike { text-decoration: line-through; color: var(--orange); opacity: 0.7; }
+
+    .diff-suffix-tag {
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: var(--orange-light);
+      color: var(--orange);
+      font-family: 'Inter', sans-serif;
       font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s;
+    }
+
+    .diff-type-tag {
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: var(--bg);
       border: 1px solid var(--border);
-      background: var(--bg-secondary);
-      color: var(--text-primary);
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .diff-result-line {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--green);
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .action-btn:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--accent-border);
-      color: var(--accent);
+    .diff-arrow { color: var(--text-muted); font-size: 11px; }
+
+    /* Prompt */
+    .prompt-bar {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
     }
+
+    /* Action Buttons */
+    .action-bar {
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-btn {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.12s;
+      border: 1px solid var(--border);
+      background: var(--bg-white);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .action-btn:hover { background: var(--bg-hover); border-color: var(--text-muted); }
 
     .action-btn.primary {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--green);
+      border-color: var(--green);
       color: white;
     }
 
-    .action-btn.primary:hover {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
+    .action-btn.primary:hover { opacity: 0.9; }
+
+    .action-btn.outline-green {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* User Message */
+    .user-msg {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .user-msg-bubble {
+      background: var(--green);
+      color: white;
+      padding: 10px 16px;
+      border-radius: var(--radius-lg);
+      font-size: 13px;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+
+    /* Tool Call */
+    .tool-call {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 6px 0;
+      cursor: pointer;
+    }
+
+    .tool-call:hover { color: var(--text-secondary); }
+
+    /* Approval Card */
+    .approval-card {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      background: var(--bg-white);
+    }
+
+    .approval-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .approval-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .approval-code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .approval-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .approve-btn {
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: var(--green);
       color: white;
     }
 
-    .action-btn-icon { width: 14px; height: 14px; opacity: 0.7; }
+    .reject-btn {
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-white);
+      color: var(--text);
+    }
 
-    /* System message */
-    .system-message {
+    /* Success Card */
+    .success-card {
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #f0fdf4;
+    }
+
+    .success-card-header {
+      padding: 12px 16px;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      padding: 8px 0;
+      border-bottom: 1px solid #bbf7d0;
     }
 
-    .system-message-line { flex: 1; height: 1px; background: var(--border); }
+    .success-card-header .icon { color: var(--green); font-size: 16px; }
+    .success-card-header .title { font-size: 13px; font-weight: 600; color: var(--green); }
+    .success-card-header .count { margin-left: auto; font-size: 11px; font-weight: 600; color: var(--green); background: #dcfce7; padding: 2px 8px; border-radius: 10px; }
 
-    .system-message-text { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+    .success-card-body { padding: 14px 16px; }
 
-    /* Completion message */
-    .completion-msg {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      margin-top: 4px;
+    .success-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      font-size: 12px;
+      border-bottom: 1px solid #dcfce7;
     }
 
-    .completion-msg p { font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
-    .completion-msg .highlight { color: var(--success); font-weight: 500; }
+    .success-row:last-child { border-bottom: none; }
+    .success-row .check { color: var(--green); font-weight: 700; }
+    .success-row .old { color: var(--text-muted); text-decoration: line-through; font-family: monospace; font-size: 11px; }
+    .success-row .new { color: var(--green); font-family: monospace; font-size: 11px; font-weight: 500; }
+    .success-row .badge { font-size: 10px; background: #dcfce7; color: var(--green); padding: 1px 6px; border-radius: 3px; font-weight: 500; }
 
     /* Chat Input */
     .chat-input-area {
@@ -669,630 +793,716 @@
       border-top: 1px solid var(--border);
     }
 
-    .chat-input-wrapper {
+    .chat-input-wrap {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--bg-input);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 10px 14px;
+      background: var(--bg-white);
       transition: border-color 0.15s;
     }
 
-    .chat-input-wrapper:focus-within { border-color: var(--accent-border); }
+    .chat-input-wrap:focus-within { border-color: var(--text-muted); }
 
     .chat-input {
       flex: 1;
-      background: none;
       border: none;
       outline: none;
-      color: var(--text-primary);
       font-size: 13px;
       font-family: inherit;
+      color: var(--text);
+      background: transparent;
     }
 
     .chat-input::placeholder { color: var(--text-muted); }
 
-    .send-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: var(--radius-sm);
-      background: var(--accent);
+    .chat-send {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: opacity 0.1s;
     }
 
-    .send-btn:hover { background: var(--accent-hover); }
-    .send-btn svg { width: 14px; height: 14px; fill: white; }
+    .chat-send:hover { opacity: 0.85; }
+    .chat-send svg { width: 14px; height: 14px; fill: white; }
 
-    /* Scenario views */
-    .scenario-view { display: none; }
-    .scenario-view.active { display: flex; }
+    /* Scenario content */
+    .scenario-content { display: none; }
+    .scenario-content.active { display: flex; flex-direction: column; gap: 20px; }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.3s ease; }
 
     /* Responsive */
-    @media (max-width: 960px) {
-      .app-layout { grid-template-columns: 1fr; }
+    @media (max-width: 1024px) {
+      .main-layout { grid-template-columns: 1fr; }
       .bom-panel { display: none; }
-    }
-
-    /* Additional suffix-specific styles */
-    .diff-block {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
-
-    .diff-block-header {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .diff-block-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-
-    .diff-block-body { padding: 10px 14px; }
-
-    .diff-row {
-      display: flex;
-      align-items: center;
-      padding: 8px 10px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 6px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-    }
-
-    .diff-row:last-child { margin-bottom: 0; }
-
-    .diff-row-num {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-right: 10px;
-      flex-shrink: 0;
-    }
-
-    .diff-row-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .diff-original {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 11.5px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .diff-original .strikethrough {
-      text-decoration: line-through;
-      color: var(--orange);
-      opacity: 0.6;
-    }
-
-    .diff-resolved {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 11.5px;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .diff-arrow {
-      color: var(--text-muted);
-      font-size: 10px;
-    }
-
-    .diff-tag {
-      font-size: 9px;
-      padding: 2px 5px;
-      border-radius: 3px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-    }
-
-    .diff-tag.removed {
-      background: var(--orange-subtle);
-      border: 1px solid var(--orange-border);
-      color: var(--orange);
-    }
-
-    .diff-tag.suffix-type {
-      background: rgba(139, 149, 168, 0.1);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-logo">O2</div>
+    <a class="nav-item">AI Chat</a>
+    <a class="nav-item">Inbox</a>
+    <a class="nav-item active">BOMs</a>
+    <a class="nav-item">Catalog</a>
+    <a class="nav-item">Clients</a>
+    <a class="nav-item">Sell</a>
+    <a class="nav-item">Suppliers</a>
+    <a class="nav-item">Buy</a>
+    <a class="nav-item">Inventory</a>
+    <a class="nav-item">Finance</a>
+    <a class="nav-item">AVL</a>
+    <a class="nav-item">Knowledge</a>
+    <div class="nav-right">
+      <span>Settings</span>
+      <span>o2-admin</span>
+    </div>
+  </nav>
+
   <!-- Scenario Tabs -->
-  <div class="scenario-tabs">
-    <button class="scenario-tab active" onclick="switchScenario('unmatched')">
-      <span class="tab-num">3</span>Unmatched MPNs
-    </button>
-    <button class="scenario-tab" onclick="switchScenario('suffix')">
-      <span class="tab-num">4</span>Extra Suffix Detected
-    </button>
+  <div class="scenario-bar">
+    <button class="scenario-btn active" onclick="switchScenario(1)">1. Upload</button>
+    <button class="scenario-btn" onclick="switchScenario(2)">2. Processing</button>
+    <button class="scenario-btn" onclick="switchScenario(3)">3. Unmatched</button>
+    <button class="scenario-btn" onclick="switchScenario(4)">4. Suffix</button>
+    <button class="scenario-btn" onclick="switchScenario(5)">5. No Price</button>
+    <button class="scenario-btn" onclick="switchScenario(6)">6. Alternates</button>
+    <button class="scenario-btn" onclick="switchScenario(7)">7. Stock Risk</button>
+    <button class="scenario-btn" onclick="switchScenario(8)">8. MOQ</button>
+    <button class="scenario-btn" onclick="switchScenario(9)">9. Lead Time</button>
+    <button class="scenario-btn" onclick="switchScenario(10)">10. Duplicates</button>
+    <button class="scenario-btn" onclick="switchScenario(11)">11. Cost Range</button>
+    <button class="scenario-btn" onclick="switchScenario(12)">12. Cost Drivers</button>
+    <button class="scenario-btn" onclick="switchScenario(13)">13. Complete</button>
   </div>
 
-  <!-- Scenario 3: Unmatched MPNs -->
-  <div class="scenario-view active" id="scenario-unmatched">
-    <div class="app-layout">
-      <div class="bom-panel">
-        <div class="bom-header">
-          <h2>BOM Analysis</h2>
-          <div class="bom-status">Analysis Complete</div>
-        </div>
-        <div class="bom-content">
-          <table class="bom-table">
-            <thead>
-              <tr><th>Line</th><th>MPN</th><th>Manufacturer</th><th>Qty</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-              <tr class="matched"><td>1</td><td>RC0402FR-0710KL</td><td>Yageo</td><td>500</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="matched"><td>2</td><td>GRM155R71C104KA88D</td><td>Murata</td><td>1000</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="matched"><td>3</td><td>STM32F407VGT6</td><td>STMicro</td><td>200</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="unmatched"><td>4</td><td>BFU520YX</td><td>Infineon</td><td>300</td><td><span class="match-badge warning">Unmatched</span></td></tr>
-              <tr class="matched"><td>5</td><td>TPS54331DR</td><td>Texas Instruments</td><td>150</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="unmatched"><td>6</td><td>54550-1833</td><td>Molex</td><td>400</td><td><span class="match-badge warning">Unmatched</span></td></tr>
-              <tr class="matched"><td>7</td><td>LM358DR</td><td>Texas Instruments</td><td>250</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="unmatched"><td>8</td><td>C30902EHCD3438</td><td>—</td><td>100</td><td><span class="match-badge warning">Unmatched</span></td></tr>
-              <tr class="matched"><td>9</td><td>SN74LVC1G14DBVR</td><td>Texas Instruments</td><td>600</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="unmatched"><td>10</td><td>ERJ-3EKF10R0V</td><td>Panasonic</td><td>800</td><td><span class="match-badge warning">Unmatched</span></td></tr>
-              <tr class="unmatched"><td>11</td><td>NXP-7120A-QFN</td><td>NXP</td><td>50</td><td><span class="match-badge warning">Unmatched</span></td></tr>
-              <tr class="matched"><td>12</td><td>BAT54SFILM</td><td>STMicro</td><td>1200</td><td><span class="match-badge success">Matched</span></td></tr>
-            </tbody>
-          </table>
+  <!-- Main Layout -->
+  <div class="main-layout">
+    <!-- BOM Panel (Left) -->
+    <div class="bom-panel">
+      <div class="bom-toolbar">
+        <span class="bom-toolbar-title">← All BOMs</span>
+        <span class="bom-toolbar-file">generated_80_line_BOM_v6.xlsx</span>
+        <span class="bom-toolbar-meta">Rev 1 · 77 line items</span>
+      </div>
+      <div class="bom-summary">
+        <span class="bom-summary-cost">Total cost: USD 67.41 – 149.90</span>
+        <span class="bom-summary-stat">77 / 77 line items priced</span>
+        <span class="bom-summary-stat">Rank by:</span>
+        <div class="rank-pills">
+          <span class="rank-pill active">Lowest price</span>
+          <span class="rank-pill">Lowest lead time</span>
         </div>
       </div>
-
-      <div class="chat-panel">
-        <div class="chat-header">
-          <div class="chat-header-left">
-            <div class="ai-avatar">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <div>
-              <div class="chat-header-title">O2 Assistant</div>
-              <div class="chat-header-subtitle">BOM Analysis · Active</div>
-            </div>
-          </div>
-          <button class="icon-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-          </button>
-        </div>
-
-        <div class="chat-messages">
-          <div class="system-message">
-            <div class="system-message-line"></div>
-            <span class="system-message-text">BOM uploaded · 12 line items · Analysis complete</span>
-            <div class="system-message-line"></div>
-          </div>
-
-          <div class="message">
-            <div class="message-avatar ai">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <div class="message-body">
-              <div class="message-sender">O2 Assistant</div>
-              <div class="completion-msg">
-                <p>BOM analysis complete. <span class="highlight">7 of 12 MPNs matched</span> successfully with verified part records. However, I found issues that need your attention.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="message">
-            <div class="message-avatar ai">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <div class="message-body">
-              <div class="message-sender">O2 Assistant</div>
-              <div class="agent-card">
-                <div class="agent-card-header">
-                  <div class="agent-card-icon warning-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#f5a623"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                  </div>
-                  <div class="agent-card-title">Unmatched MPNs</div>
-                  <div class="agent-card-count warning-count">5 items</div>
-                </div>
-                <div class="agent-card-body">
-                  <p class="agent-card-text">I found <strong>5 MPNs</strong> that could not be matched to valid part records. This typically happens due to internal part numbers, extra suffixes, typos, or manufacturer name changes.</p>
-                  <div class="mpn-list">
-                    <div class="mpn-list-header">
-                      <span class="mpn-list-title">Affected Parts</span>
-                      <button class="mpn-list-expand">View all →</button>
-                    </div>
-                    <div class="mpn-items">
-                      <div class="mpn-item"><div class="mpn-item-left"><input type="checkbox" class="mpn-item-checkbox" checked><span class="mpn-item-code">BFU520YX</span><span class="mpn-item-reason">Possible suffix issue</span></div></div>
-                      <div class="mpn-item"><div class="mpn-item-left"><input type="checkbox" class="mpn-item-checkbox" checked><span class="mpn-item-code">54550-1833</span><span class="mpn-item-reason">Internal part number</span></div></div>
-                      <div class="mpn-item"><div class="mpn-item-left"><input type="checkbox" class="mpn-item-checkbox" checked><span class="mpn-item-code">C30902EHCD3438</span><span class="mpn-item-reason">Non-standard format</span></div></div>
-                      <div class="mpn-item"><div class="mpn-item-left"><input type="checkbox" class="mpn-item-checkbox" checked><span class="mpn-item-code">ERJ-3EKF10R0V</span><span class="mpn-item-reason">Extra packaging code</span></div></div>
-                      <div class="mpn-item"><div class="mpn-item-left"><input type="checkbox" class="mpn-item-checkbox" checked><span class="mpn-item-code">NXP-7120A-QFN</span><span class="mpn-item-reason">Manufacturer renamed</span></div></div>
-                    </div>
-                  </div>
-                  <div class="reason-tags">
-                    <span class="reason-tag">Internal part number</span>
-                    <span class="reason-tag">Extra suffix</span>
-                    <span class="reason-tag">Typo</span>
-                    <span class="reason-tag">Manufacturer renamed</span>
-                    <span class="reason-tag">Non-standard MPN</span>
-                  </div>
-                </div>
-                <div class="prompt-question warning-prompt">
-                  <p>How would you like me to handle these unmatched MPNs?</p>
-                </div>
-                <div class="agent-card-actions" style="padding-top: 14px;">
-                  <div class="actions-label">Suggested actions</div>
-                  <div class="action-buttons">
-                    <button class="action-btn primary">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                      Try fuzzy match
-                    </button>
-                    <button class="action-btn">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h6"/></svg>
-                      Remove suffix & retry
-                    </button>
-                    <button class="action-btn">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                      Search by description
-                    </button>
-                    <button class="action-btn">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
-                      Mark as internal
-                    </button>
-                    <button class="action-btn">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
-                      Manual review
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="chat-input-area">
-          <div class="chat-input-wrapper">
-            <input type="text" class="chat-input" placeholder="Type a message or select an action above...">
-            <button class="send-btn"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-          </div>
-        </div>
+      <div class="bom-table-wrap">
+        <table class="bom-table" id="bomTable">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Line</th>
+              <th>MPN</th>
+              <th>Matched</th>
+              <th>Manufacturer</th>
+              <th>Description</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody id="bomBody"></tbody>
+        </table>
       </div>
     </div>
-  </div>
 
-  <!-- Scenario 4: Extra Suffix Detected -->
-  <div class="scenario-view" id="scenario-suffix">
-    <div class="app-layout">
-      <div class="bom-panel">
-        <div class="bom-header">
-          <h2>BOM Analysis</h2>
-          <div class="bom-status">Analysis Complete</div>
+    <!-- Chat Panel (Right) -->
+    <div class="chat-panel">
+      <div class="chat-header">
+        <div class="chat-avatar">G</div>
+        <div class="chat-header-info">
+          <div class="chat-header-title">Global AI</div>
+          <div class="chat-header-path">/bom/290b208f-4e07...</div>
         </div>
-        <div class="bom-content">
-          <table class="bom-table">
-            <thead>
-              <tr><th>Line</th><th>MPN</th><th>Manufacturer</th><th>Qty</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-              <tr class="matched"><td>1</td><td>RC0402FR-0710KL</td><td>Yageo</td><td>500</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="matched"><td>2</td><td>GRM155R71C104KA88D</td><td>Murata</td><td>1000</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="suffix"><td>3</td><td>ADC128S102CIMTX/NOPB-XYZ</td><td>Texas Instruments</td><td>200</td><td><span class="match-badge orange">Suffix</span></td></tr>
-              <tr class="matched"><td>4</td><td>STM32F407VGT6</td><td>STMicro</td><td>300</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="suffix"><td>5</td><td>LM358DR-CUSTOM01</td><td>Texas Instruments</td><td>150</td><td><span class="match-badge orange">Suffix</span></td></tr>
-              <tr class="matched"><td>6</td><td>TPS54331DR</td><td>Texas Instruments</td><td>400</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="suffix"><td>7</td><td>BAT54SFILM/RK</td><td>STMicro</td><td>250</td><td><span class="match-badge orange">Suffix</span></td></tr>
-              <tr class="matched"><td>8</td><td>SN74LVC1G14DBVR</td><td>Texas Instruments</td><td>600</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="matched"><td>9</td><td>GRM155R71C104KA88D</td><td>Murata</td><td>800</td><td><span class="match-badge success">Matched</span></td></tr>
-              <tr class="matched"><td>10</td><td>RC0402FR-0710KL</td><td>Yageo</td><td>1200</td><td><span class="match-badge success">Matched</span></td></tr>
-            </tbody>
-          </table>
+        <div class="chat-header-tabs">
+          <button class="chat-tab">Select</button>
+          <button class="chat-tab">+ Project</button>
+          <button class="chat-tab active">BOM</button>
+        </div>
+        <button class="chat-close">×</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <!-- Scenario 1: Upload -->
+        <div class="scenario-content active" id="sc-1">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Analyzing BOM</div>
+            <div class="agent-msg-text">
+              I'm analyzing this BOM now. I'll identify MPNs, manufacturers, descriptions, quantities, and UOM, then match parts, check pricing sources, compare alternates, and flag any lines that need your attention.
+            </div>
+          </div>
+          <div class="agent-msg fade-in">
+            <div class="prompt-bar" style="border-radius: var(--radius); border: 1px solid var(--border);">How would you like me to optimize this BOM?</div>
+            <div class="action-bar" style="padding-left: 0;">
+              <button class="action-btn primary">Lowest price</button>
+              <button class="action-btn">Shortest lead time</button>
+              <button class="action-btn">Most availability</button>
+              <button class="action-btn">Balanced</button>
+              <button class="action-btn">Cost drivers</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 2: Processing -->
+        <div class="scenario-content" id="sc-2">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Analyzing BOM</div>
+            <div class="agent-msg-text">Processing your BOM file with 77 line items.</div>
+          </div>
+          <div class="agent-msg fade-in" style="gap: 8px;">
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+              <div style="display: flex; align-items: center; gap: 8px; color: var(--green);">
+                <span style="font-size: 14px;">✓</span> Reading BOM and identifying key columns
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; color: var(--green);">
+                <span style="font-size: 14px;">✓</span> Normalizing part numbers
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; color: var(--green);">
+                <span style="font-size: 14px;">✓</span> Matching MPNs against data sources
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; color: var(--text);">
+                <span style="font-size: 14px; animation: pulse 1s infinite;">●</span> Checking pricing sources and availability...
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">
+                <span style="font-size: 14px;">○</span> Comparing alternates
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">
+                <span style="font-size: 14px;">○</span> Generating summary
+              </div>
+            </div>
+          </div>
+          <style>@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }</style>
+        </div>
+
+        <!-- Scenario 3: Unmatched MPNs -->
+        <div class="scenario-content" id="sc-3">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Some MPNs could not be matched</div>
+            <div class="agent-msg-text">
+              I found several MPNs that could not be matched. This usually happens when the part number is an internal part number, contains an extra suffix, has a typo, or belongs to a manufacturer that has changed names.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon orange">⚠</div>
+              <div class="issue-card-title">Unmatched MPNs</div>
+              <div class="issue-card-count">5 lines</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="mpn-list-card">
+                <div class="mpn-list-card-header">
+                  <span class="mpn-list-card-title">Affected Parts</span>
+                  <button class="mpn-list-card-link">Select all</button>
+                </div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">BFU520YX</span><span class="mpn-row-tag">Possible suffix</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">54550-1833</span><span class="mpn-row-tag">Internal part #</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">C30902EHCD3438</span><span class="mpn-row-tag">Non-standard</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">ERJ-3EKF10R0V</span><span class="mpn-row-tag">Packaging code</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">NXP-7120A-QFN</span><span class="mpn-row-tag">Mfr renamed</span></div>
+              </div>
+            </div>
+            <div class="prompt-bar">How would you like to handle these unmatched MPNs?</div>
+            <div class="action-bar">
+              <button class="action-btn primary" onclick="demoAction(3)">Try fuzzy match</button>
+              <button class="action-btn">Remove suffix and retry</button>
+              <button class="action-btn">Search by description</button>
+              <button class="action-btn">Treat as internal</button>
+              <button class="action-btn">Mark as manual review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 4: Suffix -->
+        <div class="scenario-content" id="sc-4">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Possible suffix issue detected</div>
+            <div class="agent-msg-text">
+              Some MPNs appear to include extra suffixes that may prevent exact matching. I can retry the search using the base part number.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon orange">✂</div>
+              <div class="issue-card-title">Extra Suffix Detected</div>
+              <div class="issue-card-count">3 parts</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="mpn-list-card">
+                <div class="mpn-list-card-header">
+                  <span class="mpn-list-card-title">Detected Suffixes</span>
+                  <button class="mpn-list-card-link">Select all</button>
+                </div>
+                <div class="diff-row-card">
+                  <div class="diff-num">1</div>
+                  <div class="diff-content">
+                    <div class="diff-original-line">
+                      ADC128S102CIMTX/NOPB<span class="diff-strike">-XYZ</span>
+                      <span class="diff-suffix-tag">-XYZ</span>
+                      <span class="diff-type-tag">Custom suffix</span>
+                    </div>
+                    <div class="diff-result-line"><span class="diff-arrow">→</span> ADC128S102CIMTX/NOPB</div>
+                  </div>
+                  <input type="checkbox" class="mpn-row-check" checked>
+                </div>
+                <div class="diff-row-card">
+                  <div class="diff-num">2</div>
+                  <div class="diff-content">
+                    <div class="diff-original-line">
+                      LM358DR<span class="diff-strike">-CUSTOM01</span>
+                      <span class="diff-suffix-tag">-CUSTOM01</span>
+                      <span class="diff-type-tag">Internal code</span>
+                    </div>
+                    <div class="diff-result-line"><span class="diff-arrow">→</span> LM358DR</div>
+                  </div>
+                  <input type="checkbox" class="mpn-row-check" checked>
+                </div>
+                <div class="diff-row-card">
+                  <div class="diff-num">3</div>
+                  <div class="diff-content">
+                    <div class="diff-original-line">
+                      BAT54SFILM<span class="diff-strike">/RK</span>
+                      <span class="diff-suffix-tag">/RK</span>
+                      <span class="diff-type-tag">Packaging code</span>
+                    </div>
+                    <div class="diff-result-line"><span class="diff-arrow">→</span> BAT54SFILM</div>
+                  </div>
+                  <input type="checkbox" class="mpn-row-check" checked>
+                </div>
+              </div>
+            </div>
+            <div class="prompt-bar">Should I remove likely suffixes and retry matching these parts?</div>
+            <div class="action-bar">
+              <button class="action-btn primary" onclick="demoAction(4)">Retry with base MPN</button>
+              <button class="action-btn">Show changes first</button>
+              <button class="action-btn">Keep original MPN</button>
+              <button class="action-btn">Mark for manual review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 5: No Price -->
+        <div class="scenario-content" id="sc-5">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Matched parts need pricing</div>
+            <div class="agent-msg-text">
+              <strong>4 lines</strong> are matched but do not have priced sources yet. These parts are recognized, but I cannot include them in the final quote until pricing is available.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon amber">$</div>
+              <div class="issue-card-title">No Priced Source</div>
+              <div class="issue-card-count">4 lines</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">These parts are valid and matched, but pricing data is missing from all available sources. They cannot be included in the final quote yet.</div>
+              <div class="mpn-list-card">
+                <div class="mpn-list-card-header"><span class="mpn-list-card-title">Affected Lines</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">BFU520XR</span><span class="mpn-row-tag">Line 14</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">TDA7293V</span><span class="mpn-row-tag">Line 28</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">MAX232CPE+</span><span class="mpn-row-tag">Line 45</span></div>
+                <div class="mpn-row"><input type="checkbox" class="mpn-row-check" checked><span class="mpn-row-code">AD8221ARZ</span><span class="mpn-row-tag">Line 62</span></div>
+              </div>
+            </div>
+            <div class="prompt-bar">How would you like to resolve these no-price lines?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Refresh prices</button>
+              <button class="action-btn">Search alternates</button>
+              <button class="action-btn">Send supplier RFQ</button>
+              <button class="action-btn">Enter manual price</button>
+              <button class="action-btn">Keep pending</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 6: Alternates -->
+        <div class="scenario-content" id="sc-6">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Alternates available</div>
+            <div class="agent-msg-text">
+              I found alternates for several line items. Some alternates are cheaper, while others have better availability or shorter lead time.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon blue">⇄</div>
+              <div class="issue-card-title">Alternates Found</div>
+              <div class="issue-card-count">12 lines</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">12 line items have valid alternates. Switching to alternates could save <strong>~$8.40 (12%)</strong> on total BOM cost or reduce average lead time by <strong>3 days</strong>.</div>
+            </div>
+            <div class="prompt-bar">How should I use alternates for this BOM?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Optimize across all alternates</button>
+              <button class="action-btn">Only if original unavailable</button>
+              <button class="action-btn">Use cheapest alternate</button>
+              <button class="action-btn">Shortest lead time</button>
+              <button class="action-btn">Require manual approval</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 7: Stock Risk -->
+        <div class="scenario-content" id="sc-7">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Availability risk detected</div>
+            <div class="agent-msg-text">
+              Some selected sources do not have enough available quantity to support the production quantity.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon red">!</div>
+              <div class="issue-card-title">Insufficient Stock</div>
+              <div class="issue-card-count">3 lines</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">These parts have selected sources with stock below the required production quantity.</div>
+              <div class="mpn-list-card">
+                <div class="mpn-list-card-header"><span class="mpn-list-card-title">At-Risk Lines</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">STM32F407VGT6</span><span class="mpn-row-tag orange">Need 200, have 85</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">GRM155R71C104KA88D</span><span class="mpn-row-tag orange">Need 1000, have 420</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">TPS54331DR</span><span class="mpn-row-tag orange">Need 150, have 60</span></div>
+              </div>
+            </div>
+            <div class="prompt-bar">How should I handle lines with insufficient stock?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Split across sources</button>
+              <button class="action-btn">Search alternates</button>
+              <button class="action-btn">Use longer lead-time source</button>
+              <button class="action-btn">Reduce quantity</button>
+              <button class="action-btn">Mark as supply risk</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 8: MOQ -->
+        <div class="scenario-content" id="sc-8">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">MOQ or packaging constraint found</div>
+            <div class="agent-msg-text">
+              Some parts have MOQ or package quantity constraints that are higher than the requested quantity. This may affect final cost.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon purple">▦</div>
+              <div class="issue-card-title">MOQ / SPQ Constraint</div>
+              <div class="issue-card-count">6 lines</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">6 parts require purchasing more than the requested quantity due to supplier MOQ or standard package quantity. Excess cost impact: <strong>~$4.20</strong>.</div>
+            </div>
+            <div class="prompt-bar">Quote based on requested quantity or supplier MOQ?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Use requested quantity</button>
+              <button class="action-btn">Use supplier MOQ</button>
+              <button class="action-btn">Show price impact</button>
+              <button class="action-btn">Mark as buyer decision</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 9: Lead Time -->
+        <div class="scenario-content" id="sc-9">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Price and lead time tradeoff</div>
+            <div class="agent-msg-text">
+              Several low-price sources have longer lead times. Faster options are available, but at a higher price. <strong>12 lines</strong> have a price vs lead-time tradeoff.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon blue">⏱</div>
+              <div class="issue-card-title">Lead Time Tradeoff</div>
+              <div class="issue-card-count">12 lines</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">
+                <strong>Lowest price option:</strong> $67.41 total, avg 14 days lead time<br>
+                <strong>Fastest option:</strong> $89.20 total, avg 5 days lead time<br>
+                <strong>Difference:</strong> +$21.79 (+32%) for 9 days faster delivery
+              </div>
+            </div>
+            <div class="prompt-bar">Would you like to prioritize lower cost or faster delivery?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Lower cost</button>
+              <button class="action-btn">Faster delivery</button>
+              <button class="action-btn">Balanced option</button>
+              <button class="action-btn">Show comparison</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 10: Duplicates -->
+        <div class="scenario-content" id="sc-10">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Duplicate MPNs detected</div>
+            <div class="agent-msg-text">
+              I found duplicate MPNs across multiple lines. Combining quantities may improve pricing or MOQ coverage.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon purple">⊕</div>
+              <div class="issue-card-title">Duplicate MPNs</div>
+              <div class="issue-card-count">4 groups</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">4 MPNs appear in multiple BOM lines. Consolidating for pricing could unlock better price breaks.</div>
+              <div class="mpn-list-card">
+                <div class="mpn-list-card-header"><span class="mpn-list-card-title">Duplicates</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">RC0402FR-0710KL</span><span class="mpn-row-tag">Lines 1, 5, 12 · Total: 2500</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">GRM155R71C104KA88D</span><span class="mpn-row-tag">Lines 2, 9 · Total: 1800</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">BAT54SFILM</span><span class="mpn-row-tag">Lines 7, 11 · Total: 1450</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">SN74LVC1G14DBVR</span><span class="mpn-row-tag">Lines 3, 8 · Total: 900</span></div>
+              </div>
+            </div>
+            <div class="prompt-bar">Should I consolidate duplicate MPNs for sourcing and pricing?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Consolidate duplicates</button>
+              <button class="action-btn">Keep lines separate</button>
+              <button class="action-btn">Show duplicates first</button>
+              <button class="action-btn">Consolidate only for pricing</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 11: Cost Range -->
+        <div class="scenario-content" id="sc-11">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Cost range generated</div>
+            <div class="agent-msg-text">
+              The current BOM cost range is <strong>USD 67.41 – 149.90</strong>. The range comes from different valid sources, alternates, lead times, MOQ, and price breaks.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon green">$</div>
+              <div class="issue-card-title">Cost Range Explanation</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="issue-card-text">
+                <strong>Low end ($67.41):</strong> Cheapest source per line, longer lead times, some MOQ excess<br>
+                <strong>High end ($149.90):</strong> Fastest delivery, preferred distributors, exact quantities<br><br>
+                The top 1 line drives ~11% of the cost. 12 lines have a price vs lead-time tradeoff.
+              </div>
+            </div>
+            <div class="prompt-bar">Would you like me to generate a recommended quote?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Lowest price quote</button>
+              <button class="action-btn">Shortest lead time</button>
+              <button class="action-btn">Balanced quote</button>
+              <button class="action-btn">Explain cost drivers</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 12: Cost Drivers -->
+        <div class="scenario-content" id="sc-12">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">Major cost drivers found</div>
+            <div class="agent-msg-text">
+              A small number of line items are driving most of the BOM cost. Reviewing these first may have the biggest impact on margin.
+            </div>
+          </div>
+          <div class="issue-card fade-in">
+            <div class="issue-card-header">
+              <div class="issue-card-icon amber">↑</div>
+              <div class="issue-card-title">High Cost Drivers</div>
+              <div class="issue-card-count">Top 5 = 62% of cost</div>
+            </div>
+            <div class="issue-card-body">
+              <div class="mpn-list-card">
+                <div class="mpn-list-card-header"><span class="mpn-list-card-title">Top Cost Lines</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">STM32F407VGT6</span><span class="mpn-row-tag orange">$18.40 · 27% of total</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">AD8221ARZ</span><span class="mpn-row-tag orange">$9.80 · 15% of total</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">TPS54331DR</span><span class="mpn-row-tag orange">$5.60 · 8% of total</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">LM358DR</span><span class="mpn-row-tag">$4.20 · 6% of total</span></div>
+                <div class="mpn-row"><span class="mpn-row-code">MAX232CPE+</span><span class="mpn-row-tag">$3.90 · 6% of total</span></div>
+              </div>
+            </div>
+            <div class="prompt-bar">Do you want me to show cheaper alternatives for these?</div>
+            <div class="action-bar">
+              <button class="action-btn primary">Find cheaper alternates</button>
+              <button class="action-btn">Show cost drivers</button>
+              <button class="action-btn">Compare suppliers</button>
+              <button class="action-btn">Keep current selection</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 13: Complete -->
+        <div class="scenario-content" id="sc-13">
+          <div class="agent-msg fade-in">
+            <div class="agent-msg-title">BOM analysis complete</div>
+            <div class="agent-msg-text">
+              Matched <strong>77/77</strong> · 77 quotable (100%). Everything's sourced and priced — ready to quote.<br><br>
+              <strong>Heads up:</strong> the top 1 line drives ~11% of the cost · 12 lines with a price vs lead-time tradeoff.
+            </div>
+          </div>
+          <div class="action-bar fade-in" style="padding-left: 0;">
+            <button class="action-btn primary">Lowest price</button>
+            <button class="action-btn">Shortest lead time</button>
+            <button class="action-btn">Most availability</button>
+            <button class="action-btn">Balanced</button>
+            <button class="action-btn">Cost drivers</button>
+            <button class="action-btn">Speed vs cost</button>
+          </div>
+          <div class="user-msg fade-in">
+            <div class="user-msg-bubble">Pick the cheapest in-stock source for every line.</div>
+          </div>
+          <div class="tool-call fade-in">▸ 1 tool call(s) · 1 reasoning step(s)</div>
+          <div class="approval-card fade-in">
+            <div class="approval-title">Approval needed before running</div>
+            <div class="approval-text">
+              • Pick the best distributor source by "lowest price, in-stock only" for every line on BOM 290b208f-4e07-4c1d-bfc0-1c9bc92d904b <span class="approval-code">bom.ai_select_sources</span>
+            </div>
+            <div class="approval-actions">
+              <button class="approve-btn">Approve</button>
+              <button class="reject-btn">Reject</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="chat-panel">
-        <div class="chat-header">
-          <div class="chat-header-left">
-            <div class="ai-avatar">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <div>
-              <div class="chat-header-title">O2 Assistant</div>
-              <div class="chat-header-subtitle">BOM Analysis · Active</div>
-            </div>
-          </div>
-          <button class="icon-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-          </button>
-        </div>
-
-        <div class="chat-messages">
-          <div class="system-message">
-            <div class="system-message-line"></div>
-            <span class="system-message-text">BOM uploaded · 10 line items · Analysis complete</span>
-            <div class="system-message-line"></div>
-          </div>
-
-          <div class="message">
-            <div class="message-avatar ai">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <div class="message-body">
-              <div class="message-sender">O2 Assistant</div>
-              <div class="completion-msg">
-                <p>BOM analysis complete. <span class="highlight">7 of 10 MPNs matched</span> successfully. I detected a potential issue with 3 parts that may have extra suffixes preventing exact matching.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="message">
-            <div class="message-avatar ai">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <div class="message-body">
-              <div class="message-sender">O2 Assistant</div>
-              <div class="agent-card">
-                <div class="agent-card-header">
-                  <div class="agent-card-icon orange-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#f97316"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/><line x1="18" y1="15" x2="22" y2="19" /><line x1="22" y1="15" x2="18" y2="19" /></svg>
-                  </div>
-                  <div class="agent-card-title">Possible Suffix Issue Detected</div>
-                  <div class="agent-card-count orange-count">3 parts</div>
-                </div>
-                <div class="agent-card-body">
-                  <p class="agent-card-text">Some MPNs appear to include <strong>extra suffixes</strong> — such as custom endings, packaging codes, or internal formatting — that may prevent exact matching. I can retry the search using the base part number.</p>
-
-                  <!-- Diff-style comparison -->
-                  <div class="diff-block">
-                    <div class="diff-block-header">
-                      <span class="diff-block-title">Detected Suffixes</span>
-                      <button class="mpn-list-expand">Select all</button>
-                    </div>
-                    <div class="diff-block-body">
-                      <div class="diff-row">
-                        <div class="diff-row-num">1</div>
-                        <div class="diff-row-content">
-                          <div class="diff-original">
-                            <span>ADC128S102CIMTX/NOPB</span><span class="strikethrough">-XYZ</span>
-                            <span class="diff-tag removed">-XYZ</span>
-                            <span class="diff-tag suffix-type">Custom suffix</span>
-                          </div>
-                          <div class="diff-resolved">
-                            <span class="diff-arrow">→</span>
-                            <span>ADC128S102CIMTX/NOPB</span>
-                          </div>
-                        </div>
-                        <input type="checkbox" class="mpn-item-checkbox" checked>
-                      </div>
-                      <div class="diff-row">
-                        <div class="diff-row-num">2</div>
-                        <div class="diff-row-content">
-                          <div class="diff-original">
-                            <span>LM358DR</span><span class="strikethrough">-CUSTOM01</span>
-                            <span class="diff-tag removed">-CUSTOM01</span>
-                            <span class="diff-tag suffix-type">Internal code</span>
-                          </div>
-                          <div class="diff-resolved">
-                            <span class="diff-arrow">→</span>
-                            <span>LM358DR</span>
-                          </div>
-                        </div>
-                        <input type="checkbox" class="mpn-item-checkbox" checked>
-                      </div>
-                      <div class="diff-row">
-                        <div class="diff-row-num">3</div>
-                        <div class="diff-row-content">
-                          <div class="diff-original">
-                            <span>BAT54SFILM</span><span class="strikethrough">/RK</span>
-                            <span class="diff-tag removed">/RK</span>
-                            <span class="diff-tag suffix-type">Packaging code</span>
-                          </div>
-                          <div class="diff-resolved">
-                            <span class="diff-arrow">→</span>
-                            <span>BAT54SFILM</span>
-                          </div>
-                        </div>
-                        <input type="checkbox" class="mpn-item-checkbox" checked>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="prompt-question orange-prompt">
-                  <p>Should I remove likely suffixes and retry matching these parts?</p>
-                </div>
-
-                <div class="agent-card-actions" style="padding-top: 14px;">
-                  <div class="actions-label">Suggested actions</div>
-                  <div class="action-buttons">
-                    <button class="action-btn primary" onclick="handleSuffixAction('retry')">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-                      Retry with base MPN
-                    </button>
-                    <button class="action-btn" onclick="handleSuffixAction('preview')">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                      Show changes first
-                    </button>
-                    <button class="action-btn" onclick="handleSuffixAction('keep')">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                      Keep original MPN
-                    </button>
-                    <button class="action-btn" onclick="handleSuffixAction('manual')">
-                      <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
-                      Mark for manual review
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="chat-input-area">
-          <div class="chat-input-wrapper">
-            <input type="text" class="chat-input" placeholder="Type a message or select an action above...">
-            <button class="send-btn"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-          </div>
+      <!-- Chat Input -->
+      <div class="chat-input-area">
+        <div class="chat-input-wrap">
+          <input type="text" class="chat-input" placeholder="Message Global AI...">
+          <button class="chat-send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    function switchScenario(id) {
-      document.querySelectorAll('.scenario-view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
-      document.getElementById('scenario-' + id).classList.add('active');
-      event.currentTarget.classList.add('active');
+    // BOM data
+    const bomData = [
+      { line: 1, mpn: 'RC0603FR-0710KL', matched: '4 valid', mfr: 'YAGEO', desc: '10 kΩ ±1% thick film resistor', qty: 1, status: 'matched' },
+      { line: 2, mpn: 'RC0603FR-071KL', matched: '4 valid', mfr: 'YAGEO', desc: '1 kΩ ±1% thick film resistor', qty: 1, status: 'matched' },
+      { line: 3, mpn: 'CRCW0603100RFKEA', matched: '6 valid', mfr: 'Vishay Dale', desc: '100 Ω ±1% thick film resistor', qty: 1, status: 'matched' },
+      { line: 4, mpn: 'CRCW06034K70FKEA', matched: '6 valid', mfr: 'Vishay Dale', desc: '4.7 kΩ ±1% resistor', qty: 1, status: 'matched' },
+      { line: 5, mpn: 'RC0603JR-070RL', matched: '6 valid', mfr: 'YAGEO', desc: '0 Ω jumper resistor', qty: 1, status: 'matched' },
+      { line: 6, mpn: 'GRM188R71C104KA01D', matched: '4 valid', mfr: 'Murata', desc: '0.1 µF 16V X7R ceramic cap', qty: 1, status: 'matched' },
+      { line: 7, mpn: 'GRM188R71C105KA12D', matched: '3 valid', mfr: 'Murata', desc: '1 µF 16V X7R ceramic cap', qty: 1, status: 'matched' },
+      { line: 8, mpn: 'BFU520YX', matched: '—', mfr: 'Infineon', desc: 'RF transistor NPN', qty: 1, status: 'unmatched' },
+      { line: 9, mpn: '54550-1833', matched: '—', mfr: 'Molex', desc: 'Connector header', qty: 1, status: 'unmatched' },
+      { line: 10, mpn: 'C30902EHCD3438', matched: '—', mfr: '—', desc: '—', qty: 1, status: 'unmatched' },
+      { line: 11, mpn: 'STM32F407VGT6', matched: '6 valid', mfr: 'STMicro', desc: 'ARM Cortex-M4 MCU', qty: 1, status: 'matched' },
+      { line: 12, mpn: 'TPS54331DR', matched: '6 valid', mfr: 'Texas Instruments', desc: 'Step-down converter', qty: 1, status: 'matched' },
+    ];
+
+    function renderBOM() {
+      const tbody = document.getElementById('bomBody');
+      tbody.innerHTML = bomData.map(row => `
+        <tr class="${row.status === 'unmatched' ? 'highlight' : ''}">
+          <td><span class="status-badge ${row.status}">${row.status === 'matched' ? 'Matched' : 'Unmatched'}</span></td>
+          <td>${row.line}</td>
+          <td class="mpn-cell">${row.mpn}</td>
+          <td><div class="matched-col"><span class="matched-badge">${row.matched}</span></div></td>
+          <td>${row.mfr}</td>
+          <td>${row.desc}</td>
+          <td>${row.qty}</td>
+        </tr>
+      `).join('');
     }
 
-    function handleSuffixAction(type) {
-      const chatPanel = document.querySelector('#scenario-suffix .chat-messages');
-      const actions = {
-        retry: { label: 'Retry with base MPN', response: 'Removing detected suffixes and retrying match...' },
-        preview: { label: 'Show changes first', response: 'Here are the proposed changes before applying...' },
-        keep: { label: 'Keep original MPN', response: 'Keeping original MPNs as-is. These will remain unmatched.' },
-        manual: { label: 'Mark for manual review', response: 'Flagging 3 MPNs with suffix issues for manual review.' }
-      };
+    function switchScenario(num) {
+      document.querySelectorAll('.scenario-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.scenario-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('sc-' + num).classList.add('active');
+      document.querySelectorAll('.scenario-btn')[num - 1].classList.add('active');
+    }
 
-      const action = actions[type];
+    function demoAction(scenario) {
+      const container = document.getElementById('sc-' + scenario);
 
-      // User message
-      const userMsg = document.createElement('div');
-      userMsg.className = 'message';
-      userMsg.style.justifyContent = 'flex-end';
-      userMsg.innerHTML = `
-        <div class="message-body" style="text-align: right;">
-          <div class="message-sender" style="color: var(--accent);">You</div>
-          <div style="display: inline-block; background: var(--accent); color: white; padding: 8px 14px; border-radius: var(--radius-md); font-size: 13px;">${action.label}</div>
-        </div>
-      `;
-      chatPanel.appendChild(userMsg);
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'user-msg fade-in';
+      userDiv.innerHTML = `<div class="user-msg-bubble">${scenario === 3 ? 'Try fuzzy match' : 'Retry with base MPN'}</div>`;
+      container.appendChild(userDiv);
 
-      // AI response
+      // Add tool call
       setTimeout(() => {
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'message';
-        aiMsg.innerHTML = `
-          <div class="message-avatar ai">
-            <svg viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-          </div>
-          <div class="message-body">
-            <div class="message-sender">O2 Assistant</div>
-            <div class="completion-msg">
-              <p>${action.response}</p>
+        const toolDiv = document.createElement('div');
+        toolDiv.className = 'tool-call fade-in';
+        toolDiv.textContent = '▸ 1 tool call(s) · 1 reasoning step(s)';
+        container.appendChild(toolDiv);
+      }, 300);
+
+      // Add result
+      setTimeout(() => {
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'fade-in';
+        if (scenario === 3) {
+          resultDiv.innerHTML = `
+            <div class="success-card">
+              <div class="success-card-header">
+                <span class="icon">✓</span>
+                <span class="title">Fuzzy Match Results</span>
+                <span class="count">3/5 resolved</span>
+              </div>
+              <div class="success-card-body">
+                <div class="success-row"><span class="check">✓</span><span class="old">BFU520YX</span><span style="color:var(--text-muted)">→</span><span class="new">BFU520XR</span><span class="badge">93%</span></div>
+                <div class="success-row"><span class="check">✓</span><span class="old">ERJ-3EKF10R0V</span><span style="color:var(--text-muted)">→</span><span class="new">ERJ-3EKF1000V</span><span class="badge">97%</span></div>
+                <div class="success-row"><span class="check">✓</span><span class="old">NXP-7120A-QFN</span><span style="color:var(--text-muted)">→</span><span class="new">PN7120A0HN</span><span class="badge">88%</span></div>
+              </div>
             </div>
-          </div>
-        `;
-        chatPanel.appendChild(aiMsg);
-        chatPanel.scrollTop = chatPanel.scrollHeight;
-
-        // Show success result for retry
-        if (type === 'retry') {
-          setTimeout(() => {
-            const resultMsg = document.createElement('div');
-            resultMsg.className = 'message';
-            resultMsg.innerHTML = `
-              <div class="message-avatar ai">
-                <svg viewBox="0 0 24 24"><path fill="white" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div style="margin-top: 12px;">
+              <div class="prompt-bar" style="border-radius: var(--radius); border: 1px solid var(--border);">Accept these matches? 2 MPNs still need attention.</div>
+              <div class="action-bar" style="padding-left: 0;">
+                <button class="action-btn primary">Accept all matches</button>
+                <button class="action-btn">Review individually</button>
+                <button class="action-btn">Reject & try another</button>
               </div>
-              <div class="message-body">
-                <div class="message-sender">O2 Assistant</div>
-                <div class="agent-card" style="border-color: rgba(52,211,153,0.3);">
-                  <div class="agent-card-header" style="border-bottom-color: rgba(52,211,153,0.15);">
-                    <div class="agent-card-icon" style="background: var(--success-subtle); border: 1px solid rgba(52,211,153,0.2);">
-                      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--success);"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="agent-card-title">Suffix Removal Successful</div>
-                    <div class="agent-card-count" style="background: var(--success-subtle); border: 1px solid rgba(52,211,153,0.2); color: var(--success);">3/3 matched</div>
-                  </div>
-                  <div class="agent-card-body">
-                    <p class="agent-card-text">All 3 MPNs matched successfully after removing detected suffixes.</p>
-                    <div class="diff-block" style="border-color: rgba(52,211,153,0.2);">
-                      <div class="diff-block-body">
-                        <div class="diff-row" style="border-color: rgba(52,211,153,0.2);">
-                          <div class="diff-row-num" style="background: var(--success); color: white;">✓</div>
-                          <div class="diff-row-content">
-                            <div class="diff-original" style="text-decoration: none;">
-                              <span style="color: var(--text-muted); text-decoration: line-through;">ADC128S102CIMTX/NOPB-XYZ</span>
-                            </div>
-                            <div class="diff-resolved">
-                              <span class="diff-arrow">→</span>
-                              <span style="color: var(--success);">ADC128S102CIMTX/NOPB</span>
-                              <span class="diff-tag" style="background: var(--success-subtle); border-color: rgba(52,211,153,0.2); color: var(--success);">Matched</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="diff-row" style="border-color: rgba(52,211,153,0.2);">
-                          <div class="diff-row-num" style="background: var(--success); color: white;">✓</div>
-                          <div class="diff-row-content">
-                            <div class="diff-original">
-                              <span style="color: var(--text-muted); text-decoration: line-through;">LM358DR-CUSTOM01</span>
-                            </div>
-                            <div class="diff-resolved">
-                              <span class="diff-arrow">→</span>
-                              <span style="color: var(--success);">LM358DR</span>
-                              <span class="diff-tag" style="background: var(--success-subtle); border-color: rgba(52,211,153,0.2); color: var(--success);">Matched</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="diff-row" style="border-color: rgba(52,211,153,0.2);">
-                          <div class="diff-row-num" style="background: var(--success); color: white;">✓</div>
-                          <div class="diff-row-content">
-                            <div class="diff-original">
-                              <span style="color: var(--text-muted); text-decoration: line-through;">BAT54SFILM/RK</span>
-                            </div>
-                            <div class="diff-resolved">
-                              <span class="diff-arrow">→</span>
-                              <span style="color: var(--success);">BAT54SFILM</span>
-                              <span class="diff-tag" style="background: var(--success-subtle); border-color: rgba(52,211,153,0.2); color: var(--success);">Matched</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="prompt-question" style="background: var(--success-subtle);">
-                    <p style="color: var(--success);">All suffix issues resolved. BOM is now fully matched.</p>
-                  </div>
-                </div>
+            </div>`;
+        } else {
+          resultDiv.innerHTML = `
+            <div class="success-card">
+              <div class="success-card-header">
+                <span class="icon">✓</span>
+                <span class="title">Suffix Removal Successful</span>
+                <span class="count">3/3 matched</span>
               </div>
-            `;
-            chatPanel.appendChild(resultMsg);
-            chatPanel.scrollTop = chatPanel.scrollHeight;
-          }, 1200);
+              <div class="success-card-body">
+                <div class="success-row"><span class="check">✓</span><span class="old">ADC128S102CIMTX/NOPB-XYZ</span><span style="color:var(--text-muted)">→</span><span class="new">ADC128S102CIMTX/NOPB</span><span class="badge">Matched</span></div>
+                <div class="success-row"><span class="check">✓</span><span class="old">LM358DR-CUSTOM01</span><span style="color:var(--text-muted)">→</span><span class="new">LM358DR</span><span class="badge">Matched</span></div>
+                <div class="success-row"><span class="check">✓</span><span class="old">BAT54SFILM/RK</span><span style="color:var(--text-muted)">→</span><span class="new">BAT54SFILM</span><span class="badge">Matched</span></div>
+              </div>
+            </div>
+            <div class="agent-msg" style="margin-top: 12px;">
+              <div class="agent-msg-text" style="color: var(--green); font-weight: 500;">All suffix issues resolved. BOM is now fully matched.</div>
+            </div>`;
         }
-      }, 500);
+        container.appendChild(resultDiv);
+        document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+      }, 800);
 
-      chatPanel.scrollTop = chatPanel.scrollHeight;
+      document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
     }
+
+    renderBOM();
   </script>
 </body>
 </html>
